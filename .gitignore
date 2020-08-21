@@ -2,4 +2,4 @@
 .gradle
 build
 *.class
-*.iml
+*.iml.DS_STORE
