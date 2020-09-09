@@ -5,11 +5,11 @@ public class PiHolderImpl implements PiHolder {
     int first;
     int second;
 
-    PiHolderImpl(int first, int second)
-    {
+    PiHolderImpl(int first, int second) {
         this.first = first;
         this.second = second;
     }
+
     @Override
     public int getFirst() {
         return first;

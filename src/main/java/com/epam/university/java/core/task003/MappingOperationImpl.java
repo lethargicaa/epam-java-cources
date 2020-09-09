@@ -6,9 +6,9 @@ public class MappingOperationImpl implements MappingOperation {
         int n = source.length();
         char temp;
         char[] array = source.toCharArray();
-        for (int i = 0; i < n/2; i++) {
-            temp = array[n-i-1];
-            array[n-i-1] = array[i];
+        for (int i = 0; i < n / 2; i++) {
+            temp = array[n - i - 1];
+            array[n - i - 1] = array[i];
             array[i] = temp;
         }
         return new String(array);

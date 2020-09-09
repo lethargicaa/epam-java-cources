@@ -9,7 +9,8 @@ public class Task004Impl implements Task004 {
         if (first == null || second == null) {
             throw new IllegalArgumentException();
         }
-        ArrayList<String> list = new ArrayList<>(first.length > second.length ? second.length : first.length);
+        ArrayList<String> list = new ArrayList<>(first.length
+                > second.length ? second.length : first.length);
         for (int i = 0; i < first.length; i++) {
             String current = first[i];
             if (Arrays.stream(second).anyMatch(x -> x == current)) {

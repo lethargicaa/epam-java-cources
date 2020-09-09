@@ -8,16 +8,16 @@ public class Task006Impl implements Task006 {
         if (measurements == null) {
             throw new IllegalArgumentException();
         }
-        double I = 0;
-        double U = 0;
+        double i = 0;
+        double u = 0;
         int count = 0;
         for (Measurement m : measurements) {
-            I += m.getAmperage();
-            U += m.getVoltage();
+            i += m.getAmperage();
+            u += m.getVoltage();
             count++;
         }
-        double avgI = I / count;
-        double avgU = U / count;
+        double avgI = i / count;
+        double avgU = u / count;
 
         double devU = 0;
         double devI = 0;
