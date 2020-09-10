@@ -8,6 +8,9 @@ import java.util.List;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
+        if (collection == null || collection.length == 0) {
+            throw new IllegalArgumentException();
+        }
         List<String> list1 = new ArrayList<String>();
         Collections.addAll(list1, collection);
         int pos = -1;
@@ -20,6 +23,9 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(ArrayList<String> collection) {
+        if (collection == null || collection.size() == 0) {
+            throw new IllegalArgumentException();
+        }
         int pos = -1;
         while (collection.size() != 1) {
             pos = (pos + 1) % collection.size();
@@ -31,6 +37,9 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
+        if (collection == null || collection.size() == 0) {
+            throw new IllegalArgumentException();
+        }
         List<String> list1 = new ArrayList<String>(collection);
         int pos = -1;
         while (list1.size() != 1) {
