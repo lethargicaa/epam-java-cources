@@ -55,7 +55,7 @@ public class Task002Impl implements Task002 {
         }
         try {
             int index = sourceString.indexOf(separator);
-            return sourceString.substring(index + 1).trim();
+            return sourceString.substring(index + separator.length());
         } catch (IndexOutOfBoundsException ex) {
             return sourceString;
         }
@@ -72,6 +72,9 @@ public class Task002Impl implements Task002 {
     @Override
     public String join(String[] sourceCollection, String glue) {
         if (sourceCollection == null || sourceCollection.length < 1 || glue == null) {
+            throw new IllegalArgumentException();
+        }
+        if (sourceCollection[0] == null) {
             throw new IllegalArgumentException();
         }
         return String.join(glue, sourceCollection);
