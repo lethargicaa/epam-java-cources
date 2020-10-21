@@ -4,6 +4,8 @@ import com.epam.university.java.core.task034.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+
 /**
  * Read the JSON.
  */
@@ -14,7 +16,7 @@ public interface Task035 {
      * @param jsonString json string
      * @return parsed data
      */
-    Person readWithJackson(ObjectMapper mapper, String jsonString);
+    Person readWithJackson(ObjectMapper mapper, String jsonString) throws IOException;
 
     /**
      * Read json string with Gson mapper.
