@@ -102,7 +102,6 @@ public class Task021Impl implements Task021 {
 
         double x = (b2 * c1 - b1 * c2) / delta;
         double y = (a1 * c2 - a2 * c1) / delta;
-//
         double xx = (double) Math.round(x * 1000000000000000d) / 1000000000000000d;
         double yy = (double) Math.round(y * 1000000000000000000d) / 1000000000000000000d;
 

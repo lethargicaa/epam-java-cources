@@ -14,5 +14,5 @@ public interface Task037 {
      * @return collection of tick-tack's
      */
     Collection<String> switcher(Callable<String> ticker,
-                                Callable<String> tacker);
+                                Callable<String> tacker) throws Exception;
 }

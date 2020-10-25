@@ -9,8 +9,7 @@ public class Task033Impl implements Task033 {
         if (first > second) {
             var innerException = new BaseExceptionImpl();
             throw new GreaterExceptionImpl("First > Second", innerException);
-        }
-        else if (first < second) {
+        } else if (first < second) {
             var innerException = new BaseExceptionImpl();
             throw new LessExceptionImpl("Second > First", innerException);
         }
