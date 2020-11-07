@@ -3,6 +3,12 @@ package com.epam.university.java.core.task032;
 import java.lang.reflect.Method;
 
 public class CountingProxyImpl implements CountingProxy {
+
+    public CountingProxyImpl proxy = new CountingProxyImpl();
+    public ClassLoader proxyClassLoader = proxy.getClass().getClassLoader();
+    Class[] interfaces = proxy.getClass().getInterfaces();
+
+
     @Override
     public int getInvocationsCount(String methodName) {
         return 0;
@@ -13,3 +19,6 @@ public class CountingProxyImpl implements CountingProxy {
         return null;
     }
 }
+//Get amount of method call.
+//     * @param methodName method name
+//     * @return amount of call

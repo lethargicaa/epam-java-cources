@@ -1,61 +1,59 @@
 package com.epam.university.java.core.task034;
 
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 
 public class SaxHandlerImpl extends SaxHandler {
+    public PersonImpl getPerson() {
+        return person;
+    }
+
+    private Collection<PhoneNumber> phoneNumbers;
     private PersonImpl person;
-    private PhoneNumberImpl phone;
-
-    boolean fName = false;
-    boolean lName = false;
-//    boolean pPhone = false;
-
-    Collection<PhoneNumberImpl> phoneNumbers = new ArrayList<>();
+    private String firstName;
+    private String lastName;
+    private int id;
+    private String lastElementName;
 
     @Override
-    public void startElement(String uri, String localName, String qName,
-                             Attributes attributes) throws SAXException {
-
-        if ("person".equalsIgnoreCase(qName)) {
-            person = new PersonImpl();
-            person.setId(Integer.parseInt(attributes.getValue("id")));
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
+        lastElementName = qName;
+        if (lastElementName.equals("person")) {
+            id = Integer.parseInt(attributes.getValue("id"));
         }
-
-        switch (qName) {
-            case "first-name":
-                fName = true;
-                break;
-            case "last-name":
-                lName = true;
-                break;
-//            case "person-phone":
-//                pPhone = true;
-//                break;
-            }
-        }
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
-        if (fName) {
-            person.setFirstName(new String(ch, start, length));
-            fName = false;
+    public void characters(char[] ch, int start, int length) {
+        String information = new String(ch, start, length);
+
+        information = information.replace("\n", "").trim();
+
+        if (!information.equals("") && lastElementName.equals("first-name")) {
+            firstName = information;
         }
-        if (lName) {
-            person.setLastName(new String(ch, start, length));
-            lName = false;
+        if (!information.equals("") && lastElementName.equals("last-name")) {
+            lastName = information;
+        }
+//          if (lastElementName.equals("person-phones")) {  phoneNumbers = new ArrayList<>();}
+
+        if (!information.equals("") && lastElementName.equals("person-phone")) {
+            if (phoneNumbers == null) {
+                phoneNumbers = new ArrayList<>();
+            }
+            phoneNumbers.add(new PhoneNumberImpl(information));
+        }
+    }
+
+    @Override
+    public void endElement(String uri, String localName, String qName) {
+        if ((firstName != null && !firstName.isEmpty())
+                && (lastName != null && !lastName.isEmpty())
+                && (id != 0)) {
+            person = new PersonImpl(id, firstName, lastName, phoneNumbers);
         }
     }
 }
-//end-element start-element characters

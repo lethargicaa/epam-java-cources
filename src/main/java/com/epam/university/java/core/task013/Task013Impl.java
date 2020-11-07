@@ -58,19 +58,13 @@ public class Task013Impl implements Task013 {
             }
             p = q;
         } while (p != l);
-        if (points.size() != hull.size()) {
-            ArrayList<Vertex> rest = new ArrayList<>();
-            for (Vertex a : points) {
-                if (!hull.contains(a)) {
-                    rest.add(a);
-                }
-            }
-            for (Vertex a : rest) {
-                for (int i = 0; i < n; i++) {
-                    if (pointOnLine(a, points.get(i), points.get((i + 1) % n))) {
-                        hull.add(a);
-                    }
-                }
+        Vertex last = hull.get(hull.size() - 1);
+        Vertex first = hull.get(0);
+        for (Vertex point  : points)
+        {
+            if (!point.equals(last) && !point.equals(first) && orientation(last, point, first) == 0)
+            {
+                hull.add(point);
             }
         }
         return hull;

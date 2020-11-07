@@ -5,6 +5,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.IOException;
 
@@ -25,12 +26,12 @@ public interface Task034 {
      * @param filepath path to file with xml
      * @return parsed data
      */
-    Person readWithJaxbParser(String filepath) throws JAXBException;
+    Person readWithJaxbParser(String filepath);
 
     /**
      * Parse document with StAX parser.
      * @param streamReader stax reader
      * @return parsed data
      */
-    Person readWithStaxParser(XMLStreamReader streamReader);
+    Person readWithStaxParser(XMLStreamReader streamReader) throws XMLStreamException;
 }

@@ -1,31 +1,49 @@
 package com.epam.university.java.core.task034;
 
+import com.fasterxml.jackson.annotation.*;
+
+
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
+
+
+
 public class PersonImpl implements Person {
+
     @XmlAttribute
     private int id;
-    @XmlAttribute(name = "first-name")
+    @XmlElement(name = "first-name")
     private String firstName;
-    @XmlAttribute(name = "last-name")
+    @XmlElement(name = "last-name")
     private String lastName;
-    @XmlAttribute(name = "person-phones")
+
+    @XmlElementWrapper(name = "person-phones")
+    @XmlElements({@XmlElement(type = PhoneNumberImpl.class, name = "person-phone")})
+
     private Collection<PhoneNumber> phoneNumbers;
 
     public PersonImpl() {
-
     }
-
-    public PersonImpl(int id, String firstName, String lastName,
-                      Collection<PhoneNumber> phoneNumbers) {
+    @JsonCreator
+    public PersonImpl(@JsonProperty("id") int id, @JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName,
+                      @JsonProperty("phones") Collection<PhoneNumber> phoneNumbers) {
 
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    @Override
+    public Collection<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    @Override
+    public void setPhoneNumbers(Collection<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
 
@@ -58,14 +76,13 @@ public class PersonImpl implements Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    @Override
-    public Collection<PhoneNumber> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
-    @Override
-    public void setPhoneNumbers(Collection<PhoneNumber> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
-    }
 }
+/*
+   @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+      include = As.PROPERTY, property = "type") @JsonSubTypes({
+
+      @JsonSubTypes.Type(value = Square.class, name = "square"),
+      @JsonSubTypes.Type(value = Circle.class, name = "circle")
+   })
+
+ */
