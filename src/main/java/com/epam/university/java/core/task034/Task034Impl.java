@@ -40,12 +40,21 @@ public class Task034Impl implements Task034 {
     }
 
     @Override
-    public Person readWithStaxParser(XMLStreamReader streamReader) throws XMLStreamException {
+    public Person readWithStaxParser(XMLStreamReader streamReader) {
         Person person = new PersonImpl();
         PhoneNumber phoneNumber = new PhoneNumberImpl();
         Collection<PhoneNumber> phoneNumbers = null;
-        while (streamReader.hasNext()) {
-            streamReader.next();
+        while (true) {
+            try {
+                if (!streamReader.hasNext()) break;
+            } catch (XMLStreamException e) {
+                e.printStackTrace();
+            }
+            try {
+                streamReader.next();
+            } catch (XMLStreamException e) {
+                e.printStackTrace();
+            }
 
             if (streamReader.getEventType() == XMLStreamReader.START_ELEMENT) {
                 if (streamReader.getLocalName().equalsIgnoreCase("person")) {
@@ -56,17 +65,29 @@ public class Task034Impl implements Task034 {
                     }
                 }
                 if (streamReader.getLocalName().equalsIgnoreCase("first-name")) {
-                    person.setFirstName(streamReader.getElementText());
+                    try {
+                        person.setFirstName(streamReader.getElementText());
+                    } catch (XMLStreamException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (streamReader.getLocalName().equalsIgnoreCase("last-name")) {
-                    person.setLastName(streamReader.getElementText());
+                    try {
+                        person.setLastName(streamReader.getElementText());
+                    } catch (XMLStreamException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (streamReader.getLocalName().equalsIgnoreCase("person-phones")) {
                     phoneNumbers = new ArrayList<>();
                     person.setPhoneNumbers(phoneNumbers);
                 }
                 if (streamReader.getLocalName().equalsIgnoreCase("person-phone")) {
-                    phoneNumbers.add(new PhoneNumberImpl(streamReader.getElementText()));
+                    try {
+                        phoneNumbers.add(new PhoneNumberImpl(streamReader.getElementText()));
+                    } catch (XMLStreamException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

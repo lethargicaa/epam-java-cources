@@ -63,7 +63,7 @@ public class Task039Test {
     }
 
     @Test
-    public void getEncodingWithEqualFrequencies1() {
+     public void getEncodingWithEqualFrequencies1() {
         final Set<String> encodedValues = new HashSet<>(
                 Arrays.asList(
                         "00",

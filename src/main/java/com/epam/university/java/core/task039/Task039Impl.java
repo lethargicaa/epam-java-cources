@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task039;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Task039Impl implements Task039 {
 
@@ -23,9 +27,22 @@ public class Task039Impl implements Task039 {
         }
 
         @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            CodeTreeNode that = (CodeTreeNode) o;
+            return weight == that.weight;
+        }
+
+        @Override
         public int compareTo(CodeTreeNode o) {
             return o.weight - weight;
-         //      return o.weight >= weight ? 0 : -1;
+
+            //      return o.weight >= weight ? 0 : -1;
             // 1-4  return o.weight >= weight ? 0 : -1;
         }
 
@@ -33,6 +50,22 @@ public class Task039Impl implements Task039 {
             if (content == ch) {
                 return parentPath;
             } else {
+
+                if (right != null && left != null && right.equals(left)) {
+                    if (right != null) {
+                        String path = right.getCodeForCharacter(ch, parentPath + 0);
+                        if (path != null) {
+                            return path;
+                        }
+                    }
+                    if (left != null) {
+                        String path = left.getCodeForCharacter(ch, parentPath + 1);
+                        if (path != null) {
+                            return path;
+                        }
+                    }
+                }
+
 
                 if (right != null) {
                     String path = right.getCodeForCharacter(ch, parentPath + 1);
@@ -93,9 +126,7 @@ public class Task039Impl implements Task039 {
             codes.put(c, tree.getCodeForCharacter(c, ""));
         }
 
-
         StringBuilder encoded = new StringBuilder();
-
         for (int i = 0; i < string.length(); i++) {
             encoded.append(codes.get(string.charAt(i)));
         }
@@ -115,7 +146,7 @@ public class Task039Impl implements Task039 {
         for (int i = 0; i < encodedString.length(); i++) {
             node = encodedString.charAt(i) == '0' ? node.left : node.right;
             if (node.content != null) {
-                decoded.append(tree.content);
+                decoded.append(node.content);
                 node = tree;
             }
         }

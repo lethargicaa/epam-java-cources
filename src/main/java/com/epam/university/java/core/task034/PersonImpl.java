@@ -6,17 +6,21 @@ import com.fasterxml.jackson.annotation.*;
 import javax.xml.bind.annotation.*;
 import java.util.Collection;
 
+@JsonRootName("person")
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({ @JsonSubTypes.Type(value = PhoneNumberImpl.class, name = "phones") })
 
 public class PersonImpl implements Person {
 
     @XmlAttribute
     private int id;
+
     @XmlElement(name = "first-name")
     private String firstName;
+
     @XmlElement(name = "last-name")
     private String lastName;
 
@@ -27,9 +31,12 @@ public class PersonImpl implements Person {
 
     public PersonImpl() {
     }
-    @JsonCreator
-    public PersonImpl(@JsonProperty("id") int id, @JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName,
-                      @JsonProperty("phones") Collection<PhoneNumber> phoneNumbers) {
+
+    public PersonImpl(@JsonProperty("id") int id, @JsonProperty("firstName") String firstName,
+                      @JsonProperty("lastName") String lastName,
+                      @JsonProperty("phones")
+                      Collection<PhoneNumber> phoneNumbers) {
+
 
         this.id = id;
         this.firstName = firstName;

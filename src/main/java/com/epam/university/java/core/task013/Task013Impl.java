@@ -60,10 +60,9 @@ public class Task013Impl implements Task013 {
         } while (p != l);
         Vertex last = hull.get(hull.size() - 1);
         Vertex first = hull.get(0);
-        for (Vertex point  : points)
-        {
-            if (!point.equals(last) && !point.equals(first) && orientation(last, point, first) == 0)
-            {
+        for (Vertex point : points) {
+            if (!point.equals(last) && !point.equals(first)
+                    && orientation(last, point, first) == 0) {
                 hull.add(point);
             }
         }

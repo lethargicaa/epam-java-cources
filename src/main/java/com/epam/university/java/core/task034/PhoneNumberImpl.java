@@ -1,15 +1,12 @@
 package com.epam.university.java.core.task034;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.xml.bind.annotation.*;
 
 //@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 
-
+@JsonRootName("phones")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PhoneNumberImpl implements PhoneNumber {
 
@@ -18,8 +15,9 @@ public class PhoneNumberImpl implements PhoneNumber {
 
     public PhoneNumberImpl() {
     }
+    @JsonCreator
+    public PhoneNumberImpl(@JsonProperty("phone") String phoneNumber) {
 
-    public PhoneNumberImpl(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
