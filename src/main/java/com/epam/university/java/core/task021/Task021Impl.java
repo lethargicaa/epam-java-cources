@@ -103,11 +103,8 @@ public class Task021Impl implements Task021 {
         double x = (b2 * c1 - b1 * c2) / delta;
         double y = (a1 * c2 - a2 * c1) / delta;
         double xx = (double) Math.round(x * 1000000000000000d) / 1000000000000000d;
-        double yy = (double) Math.round(y * 1000000000000000000d) / 1000000000000000000d;
+        double yy = (double) Math.round(y * 1000000000000000d) / 1000000000000000d;
 
-        if (xx == 1.211324865405187 && yy == 1.7886751345948129) {
-            return new PointImpl(1.2113248654051871, 1.788675134594813);
-        }
         return new PointImpl(xx, yy);
     }
 }
