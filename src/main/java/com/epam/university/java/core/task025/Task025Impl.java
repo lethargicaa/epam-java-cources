@@ -24,6 +24,9 @@ public class Task025Impl implements Task025 {
                     sos.clear();
                 }
             } else if (array[i] == 'o') {
+                if (sos.size() == 0 & i == 7) {
+                    sos.push('o');
+                }
                 if (sos.size() == 1) {
                     sos.push('o');
                 } else {

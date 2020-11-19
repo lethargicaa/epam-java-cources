@@ -1,5 +1,7 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.core.task034.PhoneNumberImpl;
+
 import javax.xml.bind.annotation.*;
 import java.util.Collection;
 
@@ -14,6 +16,8 @@ public class BeanDefinitionImpl implements BeanDefinition{
     private String className;
     @XmlElement(name = "property")
     private Collection<BeanPropertyDefinition> properties;
+    @XmlElementWrapper(name = "property")
+    @XmlElements({@XmlElement(type = PhoneNumberImpl.class, name = "person-phone")})
     @XmlAttribute(name = "init")
     private String methodName;
     @XmlAttribute
