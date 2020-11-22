@@ -24,5 +24,5 @@ public interface Task035 {
      * @param jsonString json string
      * @return parsed data
      */
-    Person readWithGson(GsonBuilder builder, String jsonString);
+    Person readWithGson(GsonBuilder builder, String jsonString) throws IOException;
 }

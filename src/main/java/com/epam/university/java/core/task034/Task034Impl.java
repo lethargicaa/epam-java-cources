@@ -46,7 +46,9 @@ public class Task034Impl implements Task034 {
         Collection<PhoneNumber> phoneNumbers = null;
         while (true) {
             try {
-                if (!streamReader.hasNext()) break;
+                if (!streamReader.hasNext()) {
+                    break;
+                }
             } catch (XMLStreamException e) {
                 e.printStackTrace();
             }

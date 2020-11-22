@@ -6,6 +6,9 @@ public class VertexImpl implements Vertex {
     private int x;
     private int y;
 
+    /**
+     * VertexImpl.
+     */
     public VertexImpl(int id, int x, int y) {
         this.id = id;
         this.x = x;

@@ -1,29 +1,40 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import com.epam.university.java.core.task034.PhoneNumberImpl;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 
 @XmlRootElement(name = "bean")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class BeanDefinitionImpl implements BeanDefinition{
+public class BeanDefinitionImpl implements BeanDefinition {
 
-    @XmlAttribute
+    @XmlAttribute(name = "id")
     private String id;
     @XmlAttribute(name = "class")
     private String className;
-    @XmlElement(name = "property")
+    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     private Collection<BeanPropertyDefinition> properties;
-    @XmlElementWrapper(name = "property")
-    @XmlElements({@XmlElement(type = PhoneNumberImpl.class, name = "person-phone")})
     @XmlAttribute(name = "init")
     private String methodName;
-    @XmlAttribute
+    @XmlAttribute(name = "scope")
     private String scope;
 
-    public BeanDefinitionImpl(String id, String className, Collection<BeanPropertyDefinition> properties, String methodName, String scope) {
+    public BeanDefinitionImpl() {
+    }
+
+    /**
+     * BeanDefinitionImpl.
+     */
+    public BeanDefinitionImpl(String id,
+                              String className,
+                              Collection<BeanPropertyDefinition> properties,
+                              String methodName,
+                              String scope) {
         this.id = id;
         this.className = className;
         this.properties = properties;

@@ -1,23 +1,24 @@
 package com.epam.university.java.core.task034;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlValue;
 
-import javax.xml.bind.annotation.*;
-
-//@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 
 @JsonRootName("phones")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PhoneNumberImpl implements PhoneNumber {
 
     @XmlValue
+    @JsonProperty
     private String phoneNumber;
 
     public PhoneNumberImpl() {
     }
-    @JsonCreator
-    public PhoneNumberImpl(@JsonProperty("phone") String phoneNumber) {
 
+    public PhoneNumberImpl(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

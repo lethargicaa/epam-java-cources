@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task034;
 
 import org.xml.sax.Attributes;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -38,7 +37,6 @@ public class SaxHandlerImpl extends SaxHandler {
         if (!information.equals("") && lastElementName.equals("last-name")) {
             lastName = information;
         }
-//          if (lastElementName.equals("person-phones")) {  phoneNumbers = new ArrayList<>();}
 
         if (!information.equals("") && lastElementName.equals("person-phone")) {
             if (phoneNumbers == null) {
